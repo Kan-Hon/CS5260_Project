@@ -54,13 +54,22 @@ This guide explains how to set up a dedicated Python environment for this projec
 
 
 ## Trained Model
+
+There are 4 main models uploaded as per experiment conducted:
+- mlimb/qlora-model-base01_32
+- mlimb/qlora-model-base02_16
+- mlimb/qLoRA-LLama-CoT-ft01-32
+- mlimb/qlora-model-ft02_16
+
 1. Download from hugging face
 ```
-https://huggingface.co/mlimb/qLoRA-LLama-CoT-32/tree/main
+https://huggingface.co/mlimb/<model_name>/tree/main
+https://huggingface.co/mlimb/qLoRA-LLama-CoT-ft01-32/tree/main
 ```
 2. Input this model id in the inference script/ download the model locally
 ```
-mlimb/qLoRA-LLama-CoT-32
+mlimb/<model_name>
+mlimb/qLoRA-LLama-CoT-ft01-32
 ```
 
 ## Evaluation/Inference Scripts
