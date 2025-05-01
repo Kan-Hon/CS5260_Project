@@ -140,7 +140,6 @@ After that, run the following command to start training answer generation direct
 pip install transformers==4.30.0
 
 python main.py     --data_root data      --caption_file data/instruct_captions.json     --model declare-lab/flan-alpaca-large     --user_msg answer --img_type vit     --bs 2 --eval_bs 2 --epoch 20 --lr 5e-5 --output_len 64     --use_caption --use_generate --prompt_format QCMG-A     --output_dir experiments_no_rationale     --eval_le "experiments/rationale_scrubbed_QCM-E/predictions_ans_test.json"    --test_le "experiments/rationale_scrubbed_QCM-E/predictions_ans_test.json" --final_eval
-
 ```
 
 Experiment 5:
@@ -148,7 +147,6 @@ Experiment 5:
 pip install peft==0.10.0 trl==0.11.4 "huggingface-hub<0.26"
 
 python main_llama_sft.py --data_root data --caption_file data/instruct_captions.json --model meta-llama/Llama-3.2-1B --user_msg rationale --img_type vit --bs 2 --eval_bs 2 --epoch 15 --lr 1e-4 --output_len 512 --use_caption --use_generate --prompt_format QCM-E --output_dir experiments --final_eval
-
 ```
 ```
 pip install transformers==4.30.0
@@ -184,7 +182,6 @@ Experiment 8:
 
 ```
 pip install peft==0.10.0 trl==0.11.4 "huggingface-hub<0.26"
-
 ```
 
 ```
@@ -203,8 +200,6 @@ Download `data_mmstar` data and `vision_features/mmstar` data from Google Drive.
 
 ```
 pip install peft==0.10.0 trl==0.11.4 "huggingface-hub<0.26"
-
-
 ```
 
 Change --model to the ANSWER model to be tested
@@ -216,7 +211,6 @@ python llama_generate_rationale_multimodal.py --data_root data_mmstar --caption_
 ```
 pip install transformers==4.30.0
 pip install "huggingface_hub<0.26"
-
 ```
 
 Change --model to the ANSWER model to be tested, and --test_le to the rationale json file
@@ -228,8 +222,6 @@ python alpaca_inference.py --data_root data_mmstar --caption_file data/instruct_
 
 ```
 pip install peft==0.10.0 trl==0.11.4 "huggingface-hub<0.26"
-
-
 ```
 
 ```
