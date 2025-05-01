@@ -30,47 +30,7 @@ The trained rationale generation and answer generation files from experiments 1-
 https://huggingface.co/collections/kanhon/cs5260-mmcot-6812f3d15a456cf3a40b04d9
 
 ```
-## Extract Features (optional)
 
-The processed vision features for ScienceQA are available at https://huggingface.co/cooelf/vision_features/tree/main. 
-
-The following instructions show how we obtain those features.
-
-Download the image files from [Google Drive](https://drive.google.com/drive/folders/1w8imCXWYn2LxajmGeGH_g5DaL2rabHev?usp=sharing) and unzip all the images (train, dev, test) in the same folder (). The structure should be:
-
-```
-images
-├── 1
-│   └── image.png
-├── 2
-│   └── image.png
-├── 3
-│   └── image.png
-├── 5
-│   └── image.png
-├── 7
-│   └── image.png
-```
-
-Run ```extract_features.py --data_root images --output_dir vision_features --img_type vit```
-
-If you hope to use your own images, please structure those images in the way above, or modify the script ```extract_features.py```.
-
-## Extract Captions (optional)
-
-The processed captions for ScienceQA are available at ```data/instruct_captions.json```. 
-
-The following instructions show how we obtain those features.
-
-Intall lavis and prepare Vicuna weights to use InstructBLIP for caption extraction.
-
-https://github.com/salesforce/LAVIS/tree/f982acc73288408bceda2d35471a8fcf55aa04ca/projects/instructblip
-
-Assume that the images are stored in the ```images``` folder. 
-
-```
-python extract_caption.py
-```
 
 ## Replicating Experiments conducted 
 
@@ -226,4 +186,46 @@ pip install peft==0.10.0 trl==0.11.4 "huggingface-hub<0.26"
 
 ```
 python llama_inference.py --data_root data_mmstar --caption_file data/instruct_captions.json --model meta-llama/Llama-3.2-1B-Instruct --user_msg answer --img_type vit --bs 4 --eval_bs 8 --epoch 1 --lr 5e-5 --output_len 64 --use_caption --use_generate --prompt_format QCMG-A --output_dir experiments --dataset mmstar
+```
+
+## Extract Features (optional)
+
+The processed vision features for ScienceQA are available at https://huggingface.co/cooelf/vision_features/tree/main. 
+
+The following instructions show how we obtain those features.
+
+Download the image files from [Google Drive](https://drive.google.com/drive/folders/1w8imCXWYn2LxajmGeGH_g5DaL2rabHev?usp=sharing) and unzip all the images (train, dev, test) in the same folder (). The structure should be:
+
+```
+images
+├── 1
+│   └── image.png
+├── 2
+│   └── image.png
+├── 3
+│   └── image.png
+├── 5
+│   └── image.png
+├── 7
+│   └── image.png
+```
+
+Run ```extract_features.py --data_root images --output_dir vision_features --img_type vit```
+
+If you hope to use your own images, please structure those images in the way above, or modify the script ```extract_features.py```.
+
+## Extract Captions (optional)
+
+The processed captions for ScienceQA are available at ```data/instruct_captions.json```. 
+
+The following instructions show how we obtain those features.
+
+Intall lavis and prepare Vicuna weights to use InstructBLIP for caption extraction.
+
+https://github.com/salesforce/LAVIS/tree/f982acc73288408bceda2d35471a8fcf55aa04ca/projects/instructblip
+
+Assume that the images are stored in the ```images``` folder. 
+
+```
+python extract_caption.py
 ```
