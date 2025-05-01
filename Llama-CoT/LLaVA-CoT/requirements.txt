@@ -3,3 +3,4 @@ transformers
 pillow
 accelerate
 llama-cookbook
+huggingface_hub[cli]
