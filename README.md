@@ -1,6 +1,57 @@
 # CS5260_Project
 
 ## Global Requirements
+---
+This guide explains how to set up a dedicated Python environment for this project using the provided `requirements.txt` file. Using a virtual environment is highly recommended to avoid conflicts with other Python projects or your system's Python installation.
+
+---
+
+**Steps:**
+
+1.  **Navigate to Project Directory:**
+    Open your terminal or command prompt and navigate to the directory where you have saved the project files (including `requirements.txt`, `inference_metrics.py`, etc.).
+    ```bash
+    cd /path/to/your/project_directory
+    ```
+
+2.  **Create a Virtual Environment:**
+    Create a new virtual environment within your project directory. We'll name it `venv` here, but you can choose another name.
+    ```bash
+    python -m venv venv
+    # Or if the above doesn't work, try:
+    # python3 -m venv venv
+    ```
+    This will create a `venv` folder in your project directory containing a copy of the Python interpreter and `pip`.
+
+3.  **Activate the Virtual Environment:**
+    Before installing packages, you need to activate the environment. The activation command differs based on your operating system and shell:
+
+    *   **On Linux or macOS (bash/zsh):**
+        ```bash
+        source venv/bin/activate
+        ```
+
+    *   **On Windows (Command Prompt - CMD):**
+        ```bash
+        .\venv\Scripts\activate.bat
+        ```
+
+    *   **On Windows (PowerShell):**
+        ```powershell
+        .\venv\Scripts\Activate.ps1
+        ```
+        *(Note: If you get an execution policy error in PowerShell, you might need to run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process` in that PowerShell window first, then try activating again).*
+
+    Once activated, your terminal prompt should change to indicate the active environment, usually by prefixing it with `(venv)`.
+
+4.  **Install Dependencies:**
+    With the virtual environment active, use `pip` to install all the packages listed in the `requirements.txt` file:
+    ```bash
+    pip install -r requirements.txt
+    ```
+    This might take some time depending on the number of packages and your internet speed.
+
+
 
 ## Trained Model
 1. Download from hugging face
