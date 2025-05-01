@@ -26,9 +26,10 @@ OR you can get it from my google drive:
 ## Trained Models
 The trained rationale generation and answer generation files from experiments 1-8 are uploaded to HuggingFace.
 
-```https://huggingface.co/collections/kanhon/cs5260-mmcot-6812f3d15a456cf3a40b04d9
 ```
+https://huggingface.co/collections/kanhon/cs5260-mmcot-6812f3d15a456cf3a40b04d9
 
+```
 ## Extract Features (optional)
 
 The processed vision features for ScienceQA are available at https://huggingface.co/cooelf/vision_features/tree/main. 
