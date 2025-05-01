@@ -12,7 +12,7 @@ Example of model ids: "Xkev/Llama-3.2V-11B-cot", "meta-llama/Llama-3.2-11B-Visio
 
 ---
 ```
-cd vlm-helper-scripts
+cd llava-cot-vlm/vlm-helper-scripts
 python merge_model_file.py \
   --base_model_id "<MODEL_ID>" \
   --adapter_path "<filepath>" \
