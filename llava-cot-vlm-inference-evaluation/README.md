@@ -90,6 +90,9 @@ python merge_model_file.py \
   --hf_token "<token>"
 ```
 
+The evaluation results on MMStar for the different models can be accessed at `https://drive.google.com/drive/folders/1J6XPMpyiOEVBpae2cQosJjGatv602xaM?usp=sharing`
+
+
 ### 🧩 Upload HF model
 ---
 This script allows you to upload a model folder to the Hugging Face Hub using the Hugging Face API.
