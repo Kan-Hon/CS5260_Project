@@ -10,8 +10,9 @@ Install all required python dependencies:
 pip install -r requirements.txt
 ```
 
-## Datasets
+## Models
 
+The trained models are are downloaded from https://huggingface.co/cooelf/mm-cot/tree/main
 
 
 
@@ -21,7 +22,7 @@ pip install -r requirements.txt
 
 # rationale generation
 CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py \
-    --data_root data/ScienceQA/data \
+    --data_root data/ \
     --caption_file data/instruct_captions.json \
     --model declare-lab/flan-alpaca-large \
     --user_msg rationale --img_type vit \
