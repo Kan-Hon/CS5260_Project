@@ -2,7 +2,17 @@
 
 ## Global Requirements
 
-## Scripts
+## Trained Model
+1. Download from hugging face
+```
+https://huggingface.co/mlimb/qLoRA-LLama-CoT-32/tree/main
+```
+2. Input this model id in the inference script/ download the model locally
+```
+mlimb/qLoRA-LLama-CoT-32
+```
+
+## Evaluation/Inference Scripts
 
 ### 🧩 Model Merger CLI
 ---
@@ -11,7 +21,7 @@ This script merges a PEFT adapter (e.g., QLoRA) into a base **vision-language mo
 Example of model ids: "Xkev/Llama-3.2V-11B-cot", "meta-llama/Llama-3.2-11B-Vision-Instruct"
 
 ---
-```
+```bash
 cd llava-cot-vlm/vlm-helper-scripts
 python merge_model_file.py \
   --base_model_id "<MODEL_ID>" \
@@ -25,7 +35,7 @@ python merge_model_file.py \
 This script allows you to upload a model folder to the Hugging Face Hub using the Hugging Face API.
 
 ---
-```
+```bash
 cd llava-cot-vlm/vlm-helper-scripts
 python hugging_face_uploader.py \
   --folder_path "/path/to/your/model/folder" \
@@ -36,9 +46,45 @@ python hugging_face_uploader.py \
 
 ### 🧩 Inference
 ---
-
+1.  `inference_metrics.py`: Runs inference for a single image and prompt, measures performance metrics (model size, FLOPs estimation, inference time), and outputs the generated text.
+2.  `gradio_app.py`: Launches an interactive web demo using Gradio, allowing users to upload images, enter prompts, and get responses from the LLaVA-CoT model.
 ---
 
+### 1. Running Inference and Metrics (`inference_metrics.py`)
+This script performs a single inference run and gathers performance metrics.
+
+---
+**Command:**
+
+```bash
+    cd llava-cot-vlm/vlm-helper-scripts
+    python inference_metrics.py \
+        --model_path <path/to/your/model_directory> \
+        --image_path <path/to/your/input_image.jpg> \
+        --prompt "<Your text prompt here>" \
+```
+Optional Arguments:
+- cot_type <type>: The CoT strategy to use. Choices: stage, sentence, best_of_N. Default: stage.
+- beam_size <int>: Beam size for the selected CoT strategy. Default: 2.
+- device <device>: Compute device to use. Choices: cuda, cpu. Default: cuda (falls back to cpu if CUDA is unavailable).
+- dtype <dtype>: Data type for model parameters. Choices: bfloat16, float16, float32. Default: bfloat16 (falls back to float32 if not supported).
+- num_runs <int>: Number of times to execute the inference for timing measurements. Default: 1.
+- warmup_runs <int>: Number of initial inference runs to perform before starting timing measurements (to warm up GPU/cache). Default: 0.
+- skip_flops: If present, disables the estimation of FLOPs (useful if it causes errors or is slow). No value needed after the flag.
+
+### 2. Gradio Application (`gradio_app.py`)
+This script runs the gradio interface to use the model
+
+---
+```bash
+cd llava-cot-vlm/vlm-helper-scripts
+python gradio_app.py \
+    --model_path "/<path/to/your/model_directory>" \
+    --device cuda \
+    --dtype bfloat16 \
+    --server_port 7861 \
+    --share
+```
 
 ### 🧩 Evaluation CLI
 ---
@@ -67,7 +113,7 @@ This script is designed to **evaluate a pre-merged vision-language model** using
     ```
 
 2. **Running eval file**
-```
+```bash
 python eval_model_file.py \
   --task_config_path <config_name>.json \
   --model_path "<model_path>"

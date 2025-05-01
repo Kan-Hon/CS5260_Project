@@ -14,5 +14,5 @@
       "work_dir": "./evaluation_outputs_qlora",
       "nproc": 1
     }
-  }
+}
   
