@@ -10,7 +10,6 @@
       "data": ["MMStar"],
       "mode": "all",
       "limit": 2,
-      "reuse": false,
       "work_dir": "./evaluation_outputs_qlora",
       "nproc": 1
     }

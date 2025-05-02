@@ -10,7 +10,7 @@ Training Llama-CoT: For qLoRA fine-tuning with Llama-3.2-11B-Vision-Instruct as 
 - Move to `./LLaVA-CoT` and pip install 'requirements.txt' in your environment
 - Follow instructions in `https://huggingface.co/datasets/Xkev/LLaVA-CoT-100k` to download the train datasets
 - Modify the paths on lines 56-57 in `.\LLaVA-CoT\train\datasets\cot_dataset.py` to where your train datasets are stored
-- Run the following to replicate qLoRA r=32 Llama-CoT (we used a single node of two A40 with 48 GB VRAM)
+- Run the following in `./LLaVA-CoT/train` to replicate qLoRA r=32 Llama-CoT (we used a single node of two A40 with 48 GB VRAM)
 ```
 torchrun --nnodes 1 --nproc_per_node 2 --master_port 29500 finetuning.py \
   --enable_fsdp True \
@@ -28,8 +28,6 @@ torchrun --nnodes 1 --nproc_per_node 2 --master_port 29500 finetuning.py \
   --num_epochs 2 \
   --batch_size_training 2 \
   --model_name meta-llama/Llama-3.2-11B-Vision-Instruct \
-  --dist_checkpoint_root_folder ./finetuned_model01 \
-  --dist_checkpoint_folder ./checkpts01 \
   --output_dir ./base02_3e \
   --use_fast_kernels True \
   --dataset "custom_dataset" \

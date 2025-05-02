@@ -90,8 +90,6 @@ python merge_model_file.py \
   --hf_token "<token>"
 ```
 
-The evaluation results on MMStar for the different models can be accessed at `https://drive.google.com/drive/folders/1J6XPMpyiOEVBpae2cQosJjGatv602xaM?usp=sharing`
-
 
 ### 🧩 Upload HF model
 ---
@@ -160,6 +158,23 @@ This script is designed to **evaluate a pre-merged vision-language model** using
 - **Pre-merged Model**: Ensure you have already merged a model (e.g., using the `merge_model_file.py` script).
 - **API Token**: You will need a Hugging Face token for model access and Open AI token for the judge
 - **Python Libraries**: The script relies on libraries such as `torch`, `transformers`, and `evalscope`.
+- **Modify llama_vision.py**: Typically located at `/path/to/local/lib/python3.11/dist-packages/vlmeval/vlm/llama_vision.py` or `/path/to/lib/python3.11/vlmeval/vlm/llama_vision.py`. To prevent overwriting of the argument `max_new_tokens` to 512 which would unexpectedly truncate model prediction prematurely, comment out the following lines 198-204
+
+```
+        if not self.use_custom_prompt(dataset):
+            if dataset is not None and DATASET_TYPE(dataset) in ['MCQ', 'Y/N']:
+                self.kwargs['max_new_tokens'] = 128
+            else:
+                self.kwargs['max_new_tokens'] = 512
+        if "cot" in self.model_name or "CoT" in self.model_name:
+            self.kwargs['max_new_tokens'] = 2048
+```
+
+and replaced by 
+
+```
+        self.kwargs['max_new_tokens'] = 2048
+```
 
 ### 📥 Example Model IDs
 
@@ -175,10 +190,14 @@ This script is designed to **evaluate a pre-merged vision-language model** using
    cd llava-cot-vlm/vlm-helper-scripts
     ```
 
-2. **Running eval file**
+2.  **Prepare config file**
+A sample config file can be found at `./llava-cot-vlm-inference-evaluation/configs/qlora-llava-cot-eval-config.json`. Set `limit` to 0 to evaluate the entire test dataset.
+
+3. **Running eval file**
 ```bash
 python eval_model_file.py \
   --task_config_path <config_name>.json \
   --model_path "<model_path>"
 ```
 
+The evaluation results on MMStar for the different models can be accessed at https://drive.google.com/drive/folders/1J6XPMpyiOEVBpae2cQosJjGatv602xaM?usp=sharing
