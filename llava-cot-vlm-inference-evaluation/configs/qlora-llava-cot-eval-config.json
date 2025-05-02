@@ -1,17 +1,22 @@
 {
     "eval_backend": "VLMEvalKit",
+    "work_dir": "./evaluation_outputs_qlora",
     "eval_config": {
       "model": [
         {
-          "name": "Llama-3.2-11B-Vision-Instruct",
-          "model_path": ""
+          "name": "LLaVA-CoT",
+          "model_path": "",
+          "max_new_tokens": 2048,
+          "temperature": 0.0
         }
       ],
       "data": ["MMStar"],
       "mode": "all",
       "limit": 2,
-      "work_dir": "./evaluation_outputs_qlora",
-      "nproc": 1
+      "nproc": 4,
+      "judge": "chatgpt-0125",
+      "OPENAI_API_KEY": "",
+      "OPENAI_API_BASE": "https://api.openai.com/v1/chat/completions"
     }
 }
   
